@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - "8082:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+    volumes:
+      - book_shop_mysql:/var/lib/mysql
+
+volumes:
+  book_shop_mysql:

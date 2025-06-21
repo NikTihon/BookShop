@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-color: #62DA97;
+            font-size: 2vmin;
+        }
+
+        .container{
+            display:flex;
+            justify-content:center;
+
+        }
+
+        .menu{
+            padding:10px;
+            height: 30vh;
+            border-radius:20px;
+            margin-right: 5px;
+            background-color:white;
+            width: 10vw;
+            text-align:center;
+        }
+
+        .main{
+            padding:10px;
+            text-align:center;
+            border-radius:20px;
+            display:inline-block;
+            width: 70vw;
+            background-color: white;
+        }
+
+        .btn{
+            height: 5vh;
+            text-decoration:none;
+            text-align:center;
+            display:block;
+            color:black;
+            padding-top: 5%;
+        }
+
+        .btn:hover{
+            color: white;
+            background-color: #63ADD0;
+        }
+
+        .line{
+            display:block;
+            background-color: black;
+            width: 100%;
+            height: 1px;
+        }
+
+        .search_string{
+
+            border-radius:20px;
+            background-color: white;
+            width: 30vw;
+            height: 6vh;
+        }
+
+        .find{
+
+            width: 15vmin;
+            height: 7vh;
+            border-radius:20px;
+        }
+
+        .find:hover{
+            background-color: #63ADD0;
+            color: white;
+        }
+
+        header{
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .prod{
+            display: flex;
+            width:100%;
+        }
+
+        .prod:hover{
+            background-color:#E1D9D1;
+        }
+
+        .name_prod{
+            font-size:2vmin;
+            width:70%
+        }
+
+        .price{
+            width:30%;
+        }
+
+
+        .sup_price{
+            width:100%;
+            height:50%;
+            font-size:2vmin;
+        }
+
+        .add_basket{
+
+            width:100%;
+            height:50%;
+        }
+
+        .add_btn{
+            width:100%;
+            height:100%;
+            background-color: #62DA97;
+        }
+
+        .basket{
+            padding: 10px;
+            height: 20vh;
+            text-align:center;
+            border-radius:20px;
+            margin-left: 5px;
+            background-color:white;
+            width: 15vw;
+
+
+        }
+
+        .basket_btn{
+            width:90%;
+            background-color: #62DA97;
+            border-radius:20px;
+            height:20%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a{
+            text-decoration:none;
+            color:black;
+        }
+
+        .prod{
+            padding:5px;
+        }
+
+        .author,.genre{
+            text-align:left;
+        }
+    </style>
+    <title>Автор</title>
+</head>
+<body>
+<header>
+    <div class="search">
+        <form action="/search" class="find_form" method="get">
+            <label>
+                <input type="text" name="str" class="search_string" placeholder="Найти книгу">
+            </label>
+            <button class="find" type="submit"><b>Найти</b></button>
+        </form>
+    </div>
+</header>
+<div class="container">
+    <div class="menu">
+        <b>Меню</b>
+        <div class="supmenu">
+            <div class="line"></div>
+            <a href="/genres" class="btn"><b>По жанрам</b></a>
+            <a href="/authors" class="btn"><b>По авторам</b></a>
+            <a href="/books" class="btn"><b>Все книги</b></a>
+        </div>
+    </div>
+    <div class="main">
+        <b th:text="${author.getName}">Авторы</b>
+        <div class="line"></div>
+        <div class="prod" th:each="book: ${author.getBooks}">
+            <a th:href="'/book/' + ${book.getName()} + '?id=' + ${book.getId}" class="prod">
+                <img th:src="${book.getImage}" width=120px th:alt="${book.getName}">
+                <div class="name_prod">
+                    <div class="name_prod" th:text="${book.getName}"></div>
+                    <div class="author">
+                        Автор:
+                        <span th:each="author: ${book.getAuthors()}" th:text="${author.getName} + ' '"></span>
+                    </div>
+                    <div class="genre">
+                        Жанр:
+                        <span th:each="genre: ${book.getGenres()}" th:text="${genre.getName} + ' '"></span>
+                    </div>
+                </div>
+                <div class="price">
+                    <div class="sup_price" th:text="${book.getPrice} + ' руб'"></div>
+                    <form th:action="'/authors/' + ${author.getName} + '?id=' + ${author.getId}" class="add_basket" method=post>
+                        <input type="hidden" name="id" th:value="${book.getId}">
+                        <input type="hidden" name="image" th:value="${book.getImage}">
+                        <input type="hidden" name="name" th:value="${book.getName}">
+                        <input type="hidden" name="price" th:value="${book.getPrice}">
+                        <button type="submit" class="add_btn">
+                            <b>Добавить корзину</b>
+                        </button>
+                    </form>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="basket">
+        <b>Корзина</b>
+        <div class="line"></div>
+        <div class="count" th:text="'Книг в корзине: ' + ${size}"></div>
+        <div class="sum" th:text="'Итоговая сумма: ' + ${sum}"></div>
+        <a href="/basket" target="_blank">
+            <div class="basket_btn">В корзину</div>
+        </a>
+    </div>
+</div>
+</body>
+</html>

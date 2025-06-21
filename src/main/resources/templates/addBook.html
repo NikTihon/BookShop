@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #62DA97;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu {
+            border-radius: 20px;
+            margin-right: 5px;
+            background-color: white;
+            width: 10vw;
+            text-align: center;
+        }
+
+        .main {
+            text-align: center;
+            border-radius: 20px;
+            display: inline-block;
+            width: 70vw;
+            background-color: white;
+        }
+
+        .btn {
+            height: 5vh;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            color: black;
+            padding-top: 5%;
+        }
+
+        .btn:hover {
+            color: white;
+            background-color: #63ADD0;
+        }
+
+        .line {
+            display: block;
+            background-color: black;
+            width: 100%;
+            height: 1px;
+        }
+
+        .search_string {
+
+            border-radius: 20px;
+            background-color: white;
+            width: 30vw;
+            height: 6vh;
+        }
+
+        .find {
+            width: 5vw;
+            height: 7vh;
+            border-radius: 20px;
+        }
+
+        .find:hover {
+            background-color: #63ADD0;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .prod {
+            display: flex;
+            width: 100%;
+        }
+
+        .prod:hover {
+            background-color: #E1D9D1;
+        }
+
+        .name_prod {
+            font-size: 20px;
+            width: 70%
+        }
+
+        .price {
+            width: 30%;
+        }
+
+        .sup_price {
+            width: 100%;
+            height: 50%;
+            font-size: 20px;
+        }
+
+        .add_basket {
+
+            width: 100%;
+            height: 50%;
+        }
+
+        .add_btn {
+            width: 100%;
+            height: 100%;
+            background-color: #62DA97;
+        }
+
+        .basket {
+            text-align: center;
+            border-radius: 20px;
+            margin-left: 5px;
+            background-color: white;
+            width: 15vw;
+        }
+
+        .basket_btn {
+            width: 90%;
+            background-color: #62DA97;
+            border-radius: 20px;
+            height: 20%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+    <title>Главная</title>
+</head>
+<body>
+<div class="container">
+    <div class="main">
+        <b>Добавить книгу</b>
+        <div class="line"></div>
+        <form action="/addBook" method="post">
+
+            <div th:object="${book}">
+
+                Название книги
+                <br>
+                <label>
+                    <input type="text" name="name" placeholder="Название" th:field="*{name}">
+                </label>
+
+                <br>
+                Ссылка на картинку
+                <br>
+                <label>
+                    <input type="text" name="image" placeholder="Ссылка" th:field="*{image}">
+                </label>
+
+                <br>
+                Цена
+                <br>
+                <label>
+                    <input type="number" name="price" placeholder="Цена" th:field="*{price}">
+                </label>
+            </div>
+
+            <br>
+            <div class="line"></div>
+            <p>Добавить авторов</p>
+            <div class="line"></div>
+            <div th:each="author: ${authors}">
+                <label>
+                    <span th:text="${author.getName}"></span>
+                    <input type="checkbox" name="authorsId" th:value="${author.getId}">
+                </label>
+            </div>
+
+            <br>
+            <div class="line"></div>
+            <p>Добавить жанры</p>
+            <div class="line"></div>
+            <div th:each="genre: ${genres}">
+                <label>
+                    <span th:text="${genre.getName}"></span>
+                    <input type="checkbox" name="genresId" th:value="${genre.getId}">
+                </label>
+            </div>
+
+            <br>
+            <div class="line"></div>
+            <p>Добавить описание</p>
+            <div class="line"></div>
+            <div th:object="${descriptionBook}">
+                <br>
+                Описание
+                <br>
+                <label>
+                    <input type="text" name="description" placeholder="Описание" th:field="*{description}">
+                </label>
+
+                <br>
+                Издательство
+                <br>
+                <label>
+                    <input type="text" name="publishing_house" placeholder="Издательство" th:field="*{publishingHouse}">
+                </label>
+
+                <br>
+                Возрастное ограничение
+                <br>
+                <label>
+                    <input type="number" name="age_limit" placeholder="Возраст" th:field="*{ageLimit}">
+                </label>
+
+                <br>
+                Объем страниц
+                <br>
+                <label>
+                    <input type="number" name="page_size" placeholder="Кол-во страниц" th:field="*{pageSize}">
+                </label>
+
+                <br>
+                Дата написания
+                <br>
+                <label>
+                    <input type="date" name="date_of_writing" placeholder="Дата" th:field="*{dateOfWriting}">
+                </label>
+            </div>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

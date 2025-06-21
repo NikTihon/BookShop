@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #62DA97;
+            font-size: 2vmin;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .menu {
+            padding: 10px;
+            height: 30vh;
+            border-radius: 20px;
+            margin-right: 5px;
+            background-color: white;
+            width: 10vw;
+            text-align: center;
+        }
+
+        .main {
+            padding: 20px;
+            text-align: center;
+            border-radius: 20px;
+            display: inline-block;
+            width: 70vw;
+            background-color: white;
+        }
+
+        .btn {
+            height: 5vh;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            color: black;
+            padding-top: 5%;
+        }
+
+        .btn:hover {
+            color: white;
+            background-color: #63ADD0;
+        }
+
+        .line {
+            display: block;
+            background-color: black;
+            width: 100%;
+            height: 1px;
+        }
+
+        .search_string {
+
+            border-radius: 20px;
+            background-color: white;
+            width: 30vw;
+            height: 6vh;
+        }
+
+        .find {
+
+            width: 15vmin;
+            height: 7vh;
+            border-radius: 20px;
+        }
+
+        .find:hover {
+            background-color: #63ADD0;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .prod {
+            display: flex;
+            width: 100%;
+        }
+
+        .name_prod {
+            font-size: 2vmin;
+            width: 70%
+        }
+
+        .price {
+            width: 30%;
+        }
+
+
+        .sup_price {
+            width: 100%;
+            height: 50%;
+            font-size: 2vmin;
+        }
+
+        .add_basket {
+
+            width: 100%;
+            height: 50%;
+        }
+
+        .add_btn {
+            border-radius: 30px;
+            width: 100%;
+            height: 50%;
+            background-color: #62DA97;
+        }
+
+        .basket {
+            padding: 10px;
+
+            height: 20vh;
+            text-align: center;
+            border-radius: 20px;
+            margin-left: 5px;
+            background-color: white;
+            width: 15vw;
+
+
+        }
+
+        .basket_btn {
+            width: 90%;
+            background-color: #62DA97;
+            border-radius: 20px;
+            height: 20%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .prod {
+            padding: 5px;
+        }
+
+        .name, .descr, .publsh_hus, .date_of_writing, .page_size, .age_limit,.author,.genre {
+            text-align: left;
+            margin: 10px;
+        }
+    </style>
+    <title>Главная</title>
+</head>
+<body>
+<header>
+    <div class="search">
+        <form action="/search" class="find_form" method="get">
+            <label>
+                <input type="text" name="str" class="search_string" placeholder="Найти книгу">
+            </label>
+            <button class="find" type="submit"><b>Найти</b></button>
+        </form>
+    </div>
+</header>
+<div class="container">
+    <div class="menu">
+        <div class="supmenu">
+            <b>Меню</b>
+            <div class="line"></div>
+            <a href="/genres" class="btn"><b>По жанрам</b></a>
+            <a href="/authors" class="btn"><b>По авторам</b></a>
+            <a href="/books" class="btn"><b>Все книги</b></a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="prod">
+            <img th:src="${book.getImage}" width="300vmin"
+                 th:alt="${book.getName}">
+            <div class="name_prod">
+                <div class="name" th:text="${book.getName}"></div>
+                <div class="descr" th:text="'О книге: ' + ${info.getDescription()}">
+                </div>
+                <div class="author">
+                    Автор:
+                    <span th:each="author: ${authors}">
+                        <span th:text="${author.getName} + '/'"></span>
+                    </span>
+                </div>
+                <div class="genre">
+                    Жанр:
+                    <span th:each="genre: ${genres}">
+                        <span th:text="${genre.getName} + '/'"></span>
+                    </span>
+                </div>
+                <div class="publsh_hus" th:text="' Издательство:' + ${info.getPublishingHouse}"></div>
+                <div class="date_of_writing" th:text="'  Дата написания:' + ${info.getDateOfWriting}"></div>
+                <div class="page_size" th:text=" ' Объём:' + ${info.getPageSize}"></div>
+                <div class="age_limit" th:text="' Возрастное ограничение:'+ ${info.getAgeLimit}"></div>
+            </div>
+            <div class="price">
+                <div class="sup_price" th:text="${book.getPrice} + ' руб'">200 руб</div>
+                <form th:action="'/book/' + ${book.getName} + '?=id' + ${book.getId}" class="add_basket" method=post>
+                    <input type="hidden" name="id" th:value="${book.getId}">
+                    <input type="hidden" name="image" th:value="${book.getImage}">
+                    <input type="hidden" name="name" th:value="${book.getName}">
+                    <input type="hidden" name="price" th:value="${book.getPrice}">
+                    <button type="submit" class="add_btn">
+                        <b>Добавить корзину</b>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="basket">
+        <b>Корзина</b>
+        <div class="line"></div>
+        <div class="count" th:text="'Книг в корзине: ' + ${size}">
+            Книг в корзине:
+        </div>
+        <div class="sum" th:text="'Итоговая сумма: ' + ${sum}">
+            Итоговая сумма:
+        </div>
+        <a href="/basket" target="_blank">
+            <div class="basket_btn">В корзину</div>
+        </a>
+    </div>
+</div>
+</body>
+</html>

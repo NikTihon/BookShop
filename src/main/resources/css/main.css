@@ -1,0 +1,108 @@
+body{
+  background-color: #62DA97;
+}
+
+.container{
+  display:flex;
+  justify-content:center;
+  padding-right:300px
+}
+
+.menu{
+  border-radius:20px;
+  margin-right: 5px;
+  vertical-align:top;
+  display:inline-block;
+  background-color:white;
+  width: 10%;
+  height: 50vh;
+}
+
+.main{
+  text-align:center;
+  border-radius:20px;
+  display:inline-block;
+  height: 95%;
+  width: 70%;
+  background-color: white;
+}
+
+
+.supmenu{
+  margin: 20px auto;
+}
+
+.btn{
+  height: 5vh;
+  text-decoration:none;
+  text-align:center;
+  display:block;
+  color:black;
+  padding-top: 5%;
+}
+
+.btn:hover{
+  color: white;
+  background-color: #63ADD0;
+}
+
+.line{
+  display:block;
+  background-color: black;
+  width: 100%;
+  height: 1px;
+}
+
+.search_string{
+  border-radius:20px;
+  background-color: white;
+  width: 90vh;
+  height: 5vh;
+  padding-left:20px;
+}
+
+.find{
+  width: 15vh;
+  height: 6vh;
+  border-radius:20px;
+}
+
+.find:hover{
+  background-color: #63ADD0;
+  color: white;
+}
+
+header{
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.prod{
+  display: flex;
+  width:100%;
+}
+
+.prod:hover{
+  background-color:#E1D9D1;
+}
+
+.name_prod{
+  font-size:20px;
+  width:70%
+}
+
+.price{
+  width:30%;
+}
+
+.sup_price{
+  width:100%;
+  height:50%;
+  font-size:20px;
+}
+
+.add_btn{
+  background-color: #62DA97;
+  width:100%;
+  height:50%;
+}

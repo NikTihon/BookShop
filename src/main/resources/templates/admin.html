@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            text-align: center;
+            background-color: #62DA97;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .menu {
+            border-radius: 20px;
+            margin-right: 5px;
+            background-color: white;
+            width: 10vw;
+            text-align: center;
+        }
+
+        .main {
+            padding: 0 15px;
+            text-align: center;
+            border-radius: 20px;
+            display: flex;
+            background-color: white;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .sup_menu {
+            padding: 10px;
+            background-color: blue;
+            display: none;
+        }
+
+        .sup_menu:hover {
+
+        }
+
+        .btn {
+            width: 70vh;
+            height: 5vh;
+            text-align: center;
+            display: block;
+            color: black;
+            background-color: #63ADD0;
+        }
+
+        .btn:hover > .sup_menu {
+            display: block;
+            color: white;
+            background-color: #63ADD0;
+        }
+    </style>
+    <title>ADMIN</title>
+</head>
+<body>
+<h1>ADMIN</h1>
+<div class="container">
+    <div class="main">
+        <div class="btn">
+            <div>Авторы</div>
+            <div class="sup_menu">
+                <div><a href="">редактировать автора</a></div>
+                <div><a href="">добавить автора</a></div>
+                <div><a href="">удалить автора</a></div>
+            </div>
+        </div>
+        <div class="btn">
+            <div>Жанры</div>
+            <div class="sup_menu">
+                <div><a href="">редактировать жанр</a></div>
+                <div><a href="">добавить жанр</a></div>
+                <div><a href="">удалить жанр</a></div>
+            </div>
+        </div>
+        <div class="btn">
+            <div class="category">Книги</div>
+            <div class="sup_menu">
+                <div><a href="">редактировать книгу</a></div>
+                <div><a href="/addBook">добавить книгу</a></div>
+                <div><a href="">удалить книгу</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
