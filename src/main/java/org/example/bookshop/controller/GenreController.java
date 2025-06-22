@@ -30,13 +30,12 @@ public class GenreController {
     }
 
     @GetMapping("/{attr}")
-    public String author(Model model, @RequestParam("id") Integer id) {
+    public String genre(Model model, @RequestParam("id") Integer id) {
         model.addAttribute("sum", basket.getSum());
         model.addAttribute("size", basket.getSize());
         model.addAttribute("genre", genreService.getGenreById(id));
         return "genre";
     }
-
 
 
 }

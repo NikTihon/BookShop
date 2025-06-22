@@ -14,7 +14,7 @@ public class Genre {
     @Column
     private String name;
 
-    @ManyToMany(mappedBy="genres", cascade={CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(mappedBy = "genres", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private final List<Book> books = new ArrayList<>();
 
     public Genre() {
@@ -40,7 +40,7 @@ public class Genre {
         return name;
     }
 
-    public List<Book> getBooks(){
+    public List<Book> getBooks() {
         return books;
     }
 }

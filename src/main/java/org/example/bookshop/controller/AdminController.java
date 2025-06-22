@@ -45,7 +45,6 @@ public class AdminController {
                           @ModelAttribute("book") Book book,
                           @RequestParam(value = "authorsId") List<Integer> authors,
                           @RequestParam(value = "genresId") List<Integer> genres) {
-        System.out.println(book);
         int bookId = bookService.addNewBook(book, authors, genres);
         model.addAttribute("bookId", bookId);
         return "redirect:/addBook";
@@ -58,57 +57,56 @@ public class AdminController {
     }
 
     @PostMapping("/deleteAuthor")
-    public String deleteAuthor(@RequestParam("id") Integer id){
-        System.out.println(id);
+    public String deleteAuthor(@RequestParam("id") Integer id) {
         authorService.deleteAuthor(id);
         return "redirect:/deleteAuthor";
     }
 
     @GetMapping("/addAuthor")
-    public String addAuthor(Model model){
+    public String addAuthor(Model model) {
         model.addAttribute("author", new Author());
         return "addAuthor";
     }
 
     @PostMapping("/addAuthor")
-    public String addAuthor(@ModelAttribute("author") Author author){
+    public String addAuthor(@ModelAttribute("author") Author author) {
         authorService.addNewAuthor(author);
         return "redirect:/addAuthor";
     }
 
     @GetMapping("/addGenre")
-    public String addGenre(Model model){
+    public String addGenre(Model model) {
         model.addAttribute("genre", new Genre());
         return "addGenre";
     }
 
     @PostMapping("/addGenre")
-    public String addGenre(@ModelAttribute("genre") Genre genre){
+    public String addGenre(@ModelAttribute("genre") Genre genre) {
         genreService.AddNewGenre(genre);
         return "redirect:/addGenre";
     }
 
     @GetMapping("/deleteGenre")
-    public String deleteGenre(Model model){
+    public String deleteGenre(Model model) {
         model.addAttribute("genres", genreService.getAllGenres());
         return "/deleteGenre";
     }
 
     @PostMapping("/deleteGenre")
-    public String deleteGenre(@RequestParam("id") Integer id){
+    public String deleteGenre(@RequestParam("id") Integer id) {
         System.out.println(id);
         genreService.deleteGenre(id);
         return "redirect:/deleteGenre";
     }
 
     @GetMapping("/deleteBook")
-    public String deleteBook(Model model){
+    public String deleteBook(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
         return "/deleteBook";
     }
 
     @PostMapping("/deleteBook")
-    public String deleteBook(@RequestParam("id") Integer id){
+    public String deleteBook(@RequestParam("id") Integer id) {
         System.out.println(id);
         bookService.deleteBook(id);
         return "redirect:/deleteBook";

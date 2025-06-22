@@ -24,7 +24,7 @@ public class Basket {
 
     public void remove(Integer bookId) {
         Book book = basket.stream().filter(i -> {
-            if (Objects.equals(i.getId(), bookId)){
+            if (Objects.equals(i.getId(), bookId)) {
                 sum -= i.getPrice();
                 return true;
             }

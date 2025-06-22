@@ -5,153 +5,153 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body{
+        body {
             background-color: #62DA97;
             font-size: 2vmin;
         }
 
-        .container{
-            display:flex;
-            justify-content:center;
+        .container {
+            display: flex;
+            justify-content: center;
 
         }
 
-        .menu{
-            padding:10px;
+        .menu {
+            padding: 10px;
             height: 30vh;
-            border-radius:20px;
+            border-radius: 20px;
             margin-right: 5px;
-            background-color:white;
+            background-color: white;
             width: 10vw;
-            text-align:center;
+            text-align: center;
         }
 
-        .main{
-            padding:10px;
-            text-align:center;
-            border-radius:20px;
-            display:inline-block;
+        .main {
+            padding: 10px;
+            text-align: center;
+            border-radius: 20px;
+            display: inline-block;
             width: 70vw;
             background-color: white;
         }
 
-        .btn{
+        .btn {
             height: 5vh;
-            text-decoration:none;
-            text-align:center;
-            display:block;
-            color:black;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            color: black;
             padding-top: 5%;
         }
 
-        .btn:hover{
+        .btn:hover {
             color: white;
             background-color: #63ADD0;
         }
 
-        .line{
-            display:block;
+        .line {
+            display: block;
             background-color: black;
             width: 100%;
             height: 1px;
         }
 
-        .search_string{
+        .search_string {
 
-            border-radius:20px;
+            border-radius: 20px;
             background-color: white;
             width: 30vw;
             height: 6vh;
         }
 
-        .find{
+        .find {
 
             width: 15vmin;
             height: 7vh;
-            border-radius:20px;
+            border-radius: 20px;
         }
 
-        .find:hover{
+        .find:hover {
             background-color: #63ADD0;
             color: white;
         }
 
-        header{
+        header {
             text-align: center;
             margin-bottom: 5px;
         }
 
-        .prod{
+        .prod {
             display: flex;
-            width:100%;
+            width: 100%;
         }
 
-        .prod:hover{
-            background-color:#E1D9D1;
+        .prod:hover {
+            background-color: #E1D9D1;
         }
 
-        .name_prod{
-            font-size:2vmin;
-            width:70%
+        .name_prod {
+            font-size: 2vmin;
+            width: 70%
         }
 
-        .price{
-            width:30%;
+        .price {
+            width: 30%;
         }
 
 
-        .sup_price{
-            width:100%;
-            height:50%;
-            font-size:2vmin;
+        .sup_price {
+            width: 100%;
+            height: 50%;
+            font-size: 2vmin;
         }
 
-        .add_basket{
+        .add_basket {
 
-            width:100%;
-            height:50%;
+            width: 100%;
+            height: 50%;
         }
 
-        .add_btn{
-            width:100%;
-            height:100%;
+        .add_btn {
+            width: 100%;
+            height: 100%;
             background-color: #62DA97;
         }
 
-        .basket{
+        .basket {
             padding: 10px;
             height: 20vh;
-            text-align:center;
-            border-radius:20px;
+            text-align: center;
+            border-radius: 20px;
             margin-left: 5px;
-            background-color:white;
+            background-color: white;
             width: 15vw;
 
 
         }
 
-        .basket_btn{
-            width:90%;
+        .basket_btn {
+            width: 90%;
             background-color: #62DA97;
-            border-radius:20px;
-            height:20%;
+            border-radius: 20px;
+            height: 20%;
             margin: 0 auto;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        a{
-            text-decoration:none;
-            color:black;
+        a {
+            text-decoration: none;
+            color: black;
         }
 
-        .prod{
-            padding:5px;
+        .prod {
+            padding: 5px;
         }
 
-        .author,.genre{
-            text-align:left;
+        .author, .genre {
+            text-align: left;
         }
     </style>
     <title>Жанр</title>
@@ -196,7 +196,8 @@
                 </div>
                 <div class="price">
                     <div class="sup_price" th:text="${book.getPrice} + ' руб'"></div>
-                    <form th:action="'/genres/' + ${genre.getName} + '?id=' + ${genre.getId}" class="add_basket" method=post>
+                    <form th:action="'/genres/' + ${genre.getName} + '?id=' + ${genre.getId}" class="add_basket"
+                          method=post>
                         <input type="hidden" name="id" th:value="${book.getId}">
                         <input type="hidden" name="image" th:value="${book.getImage}">
                         <input type="hidden" name="name" th:value="${book.getName}">
@@ -214,7 +215,7 @@
         <div class="line"></div>
         <div class="count" th:text="'Книг в корзине: ' + ${size}"></div>
         <div class="sum" th:text="'Итоговая сумма: ' + ${sum}"></div>
-        <a href="/basket" target="_blank">
+        <a href="/basket">
             <div class="basket_btn">В корзину</div>
         </a>
     </div>
