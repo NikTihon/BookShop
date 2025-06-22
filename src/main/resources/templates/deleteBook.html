@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Удалить автора</title>
+    <title>Удалить жанр</title>
     <style>
         body {
             background-color: #62DA97;
@@ -161,12 +161,12 @@
     <div class="main">
         <b>Все авторы</b>
         <div class="line"></div>
-        <div class="prod" th:each="author: ${authors}">
+        <div class="prod" th:each="book: ${books}">
             <div>
-                <div th:text="${author.getName}"></div>
+                <div th:text="${book.getName}"></div>
                 <div class="price">
-                    <form action="/deleteAuthor" class="add_basket" method="post">
-                        <input type="hidden" name="id" th:value="${author.getId}">
+                    <form action="/deleteBook" class="add_basket" method="post">
+                        <input type="hidden" name="id" th:value="${book.getId}">
                         <button type="submit" class="add_btn" style="width: 100px">
                             <b>Удалить</b>
                         </button>

@@ -100,4 +100,17 @@ public class AdminController {
         genreService.deleteGenre(id);
         return "redirect:/deleteGenre";
     }
+
+    @GetMapping("/deleteBook")
+    public String deleteBook(Model model){
+        model.addAttribute("books", bookService.getAllBooks());
+        return "/deleteBook";
+    }
+
+    @PostMapping("/deleteBook")
+    public String deleteBook(@RequestParam("id") Integer id){
+        System.out.println(id);
+        bookService.deleteBook(id);
+        return "redirect:/deleteBook";
+    }
 }
