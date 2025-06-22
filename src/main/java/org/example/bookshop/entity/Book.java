@@ -2,6 +2,7 @@ package org.example.bookshop.entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,16 @@ public class Book {
     private String image;
     @Column(nullable = false)
     private Integer price;
+    @Column
+    private String description;
+    @Column
+    private String publishing_house;
+    @Column
+    private Integer age_limit;
+    @Column
+    private Integer page_size;
+    @Column
+    private Date date_of_writing;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "list_of_authors",
@@ -31,28 +42,28 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "book_id")
-    private DescriptionBook descriptionBook = new DescriptionBook();
 
     public Book() {
 
     }
 
-    public Book(String name, String image, Integer price, List<Author> authors, List<Genre> genres) {
+    public Book(String name, String image,
+                Integer price, String description,
+                String publishing_house, Integer age_limit,
+                Integer page_size, Date date_of_writing,
+                List<Author> authors, List<Genre> genres) {
         this.name = name;
         this.image = image;
         this.price = price;
+        this.description = description;
+        this.publishing_house = publishing_house;
+        this.age_limit = age_limit;
+        this.page_size = page_size;
+        this.date_of_writing = date_of_writing;
         this.authors = authors;
         this.genres = genres;
     }
 
-    public Book(Book book, DescriptionBook descriptionBook) {
-        this.name = book.getName();
-        this.image = book.getImage();
-        this.price = book.getPrice();
-        this.descriptionBook = descriptionBook;
-    }
 
     public Integer getId() {
         return id;
@@ -71,6 +82,45 @@ public class Book {
         return price;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPublishingHouse() {
+        return publishing_house;
+    }
+
+    public void setPublishingHouse(String publishing_house) {
+        this.publishing_house = publishing_house;
+    }
+
+    public Integer getAgeLimit() {
+        return age_limit;
+    }
+
+    public void setAgeLimit(Integer age_limit) {
+        this.age_limit = age_limit;
+    }
+
+    public Integer getPageSize() {
+        return page_size;
+    }
+
+    public void setPageSize(Integer page_size) {
+        this.page_size = page_size;
+    }
+
+    public Date getDateOfWriting() {
+        return date_of_writing;
+    }
+
+    public void setDateOfWriting(Date date_of_writing) {
+        this.date_of_writing = date_of_writing;
+    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -98,8 +148,21 @@ public class Book {
         return genres;
     }
 
-
-    public DescriptionBook getDescriptionBook() {
-        return descriptionBook;
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", publishing_house='" + publishing_house + '\'' +
+                ", age_limit=" + age_limit +
+                ", page_size=" + page_size +
+                ", date_of_writing=" + date_of_writing +
+                ", authors=" + authors +
+                ", genres=" + genres +
+                '}';
     }
+
 }

@@ -182,7 +182,7 @@
                  th:alt="${book.getName}">
             <div class="name_prod">
                 <div class="name" th:text="${book.getName}"></div>
-                <div class="descr" th:text="'О книге: ' + ${info.getDescription()}">
+                <div class="descr" th:text="'О книге: ' + ${book.getDescription()}">
                 </div>
                 <div class="author">
                     Автор:
@@ -196,10 +196,10 @@
                         <span th:text="${genre.getName} + '/'"></span>
                     </span>
                 </div>
-                <div class="publsh_hus" th:text="' Издательство:' + ${info.getPublishingHouse}"></div>
-                <div class="date_of_writing" th:text="'  Дата написания:' + ${info.getDateOfWriting}"></div>
-                <div class="page_size" th:text=" ' Объём:' + ${info.getPageSize}"></div>
-                <div class="age_limit" th:text="' Возрастное ограничение:'+ ${info.getAgeLimit}"></div>
+                <div class="publsh_hus" th:text="' Издательство:' + ${book.getPublishingHouse}"></div>
+                <div class="date_of_writing" th:text="'  Дата написания:' + ${book.getDateOfWriting}"></div>
+                <div class="page_size" th:text=" ' Объём:' + ${book.getPageSize}"></div>
+                <div class="age_limit" th:text="' Возрастное ограничение:'+ ${book.getAgeLimit}"></div>
             </div>
             <div class="price">
                 <div class="sup_price" th:text="${book.getPrice} + ' руб'">200 руб</div>

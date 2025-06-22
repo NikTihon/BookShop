@@ -1,22 +1,16 @@
 CREATE TABLE IF NOT EXISTS book
 (
-    id    INT PRIMARY KEY AUTO_INCREMENT,
-    name  NVARCHAR(50) NOT NULL,
-    image NVARCHAR(2048),
-    price INT          NOT NULL CHECK (price > 0)
-);
-
-
-CREATE TABLE description_book
-(
-    book_id               INT PRIMARY KEY,
+    id               INT PRIMARY KEY AUTO_INCREMENT,
+    name             NVARCHAR(50) NOT NULL,
+    image            NVARCHAR(2048),
+    price            INT          NOT NULL CHECK (price > 0),
     description      NVARCHAR(4000),
-    publishing_house NVARCHAR(30) NOT NULL,
-    age_limit        INT          NOT NULL,
+    publishing_house NVARCHAR(30) NOT NULL DEFAULT ' ',
+    age_limit        INT          NOT NULL DEFAULT 18,
     page_size        INT,
-    date_of_writing  DATE,
-    FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE
+    date_of_writing  DATE
 );
+
 
 CREATE TABLE IF NOT EXISTS genre
 (

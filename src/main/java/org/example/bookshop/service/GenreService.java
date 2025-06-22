@@ -35,4 +35,9 @@ public class GenreService {
     public void AddNewGenre(Genre genre){
         genreRepository.save(genre);
     }
+
+    @Transactional
+    public void deleteGenre(Integer id) {
+        genreRepository.deleteById(id);
+    }
 }

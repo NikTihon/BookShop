@@ -37,4 +37,9 @@ public class AuthorService {
     public void addNewAuthor(Author author) {
         authorRepository.save(author);
     }
+
+    @Transactional
+    public void deleteAuthor(Integer id) {
+        authorRepository.deleteById(id);
+    }
 }

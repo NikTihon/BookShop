@@ -116,21 +116,15 @@ public class MainController {
         };
     }
 
-    //TODO:починить и сделать сервис
 
     @GetMapping("/book/{attr}")
     public String book(Model model,
                        @PathVariable String attr,
                        @RequestParam Integer id){
         Book book = bookService.getBookById(id);
-        System.out.println(book.getName());
-        System.out.println(book.getPrice());
-        System.out.println(book.getGenres());
-        System.out.println(book.getId());
         model.addAttribute("sum", basket.getSum());
         model.addAttribute("size", basket.getSize());
         model.addAttribute("book", book);
-        model.addAttribute("info", book.getDescriptionBook());
         model.addAttribute("authors", book.getAuthors());
         model.addAttribute("genres", book.getGenres());
         return "book";

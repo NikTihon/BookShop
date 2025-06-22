@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Удалить жанр</title>
     <style>
         body {
             background-color: #62DA97;
+            font-size: 2vmin;
         }
 
         .container {
             display: flex;
             justify-content: center;
+
         }
 
         .menu {
+            padding: 10px;
+            height: 30vh;
             border-radius: 20px;
             margin-right: 5px;
             background-color: white;
@@ -23,6 +28,7 @@
         }
 
         .main {
+            padding: 10px;
             text-align: center;
             border-radius: 20px;
             display: inline-block;
@@ -60,7 +66,8 @@
         }
 
         .find {
-            width: 5vw;
+
+            width: 15vmin;
             height: 7vh;
             border-radius: 20px;
         }
@@ -85,7 +92,7 @@
         }
 
         .name_prod {
-            font-size: 20px;
+            font-size: 2vmin;
             width: 70%
         }
 
@@ -93,10 +100,11 @@
             width: 30%;
         }
 
+
         .sup_price {
             width: 100%;
             height: 50%;
-            font-size: 20px;
+            font-size: 2vmin;
         }
 
         .add_basket {
@@ -112,11 +120,15 @@
         }
 
         .basket {
+            padding: 10px;
+            height: 20vh;
             text-align: center;
             border-radius: 20px;
             margin-left: 5px;
             background-color: white;
             width: 15vw;
+
+
         }
 
         .basket_btn {
@@ -134,57 +146,34 @@
             text-decoration: none;
             color: black;
         }
+
+        .prod {
+            padding: 5px;
+        }
+
+        .author, .genre {
+            text-align: left;
+        }
     </style>
-    <title>Главная</title>
 </head>
 <body>
 <div class="container">
     <div class="main">
-        <p>Добавить описание</p>
+        <b>Все авторы</b>
         <div class="line"></div>
-        <form action="/addDescriptionBook" method="post">
-
-            <label>
-                <input type="hidden" name="bookId" th:value="${bookId}">
-            </label>
-
-            <br>
-            Описание
-            <br>
-            <label>
-                <input type="text" name="description" placeholder="Описание" >
-            </label>
-
-            <br>
-            Издательство
-            <br>
-            <label>
-                <input type="text" name="publishing_house" placeholder="Издательство">
-            </label>
-
-            <br>
-            Возрастное ограничение
-            <br>
-            <label>
-                <input type="number" name="age_limit" placeholder="Возраст" >
-            </label>
-
-            <br>
-            Объем страниц
-            <br>
-            <label>
-                <input type="number" name="page_size" placeholder="Кол-во страниц" >
-            </label>
-
-            <br>
-            Дата написания
-            <br>
-            <label>
-                <input type="date" name="date_of_writing" placeholder="Дата" >
-            </label>
-
-            <button type="submit">Отправить</button>
-        </form>
+        <div class="prod" th:each="genre: ${genres}">
+            <div>
+                <div th:text="${genre.getName}"></div>
+                <div class="price">
+                    <form action="/deleteGenre" class="add_basket" method="post">
+                        <input type="hidden" name="id" th:value="${genre.getId}">
+                        <button type="submit" class="add_btn">
+                            <b>Удалить</b>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

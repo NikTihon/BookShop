@@ -140,90 +140,17 @@
 <body>
 <div class="container">
     <div class="main">
-        <b>Добавить книгу</b>
+        <b>Добавить жанр</b>
         <div class="line"></div>
-        <form action="/addBook" method="post">
-
-            <div th:object="${book}">
-
-                Название книги
+        <form action="/addGenre" method="post">
+            <div th:object="${genre}">
+                <br>
+                Имя жанра
                 <br>
                 <label>
                     <input type="text" name="name" placeholder="Название" th:field="*{name}">
                 </label>
-
-                <br>
-                Ссылка на картинку
-                <br>
-                <label>
-                    <input type="text" name="image" placeholder="Ссылка" th:field="*{image}">
-                </label>
-
-                <br>
-                Цена
-                <br>
-                <label>
-                    <input type="number" name="price" placeholder="Цена" th:field="*{price}">
-                </label>
-
-                <br>
-                Описание
-                <br>
-                <label>
-                    <input type="text" name="description" placeholder="Описание" th:field="*{description}">
-                </label>
-
-                <br>
-                Издательство
-                <br>
-                <label>
-                    <input type="text" name="publishing_house" placeholder="Издательство" th:field="*{publishingHouse}">
-                </label>
-
-                <br>
-                Возрастное ограничение
-                <br>
-                <label>
-                    <input type="number" name="age_limit" placeholder="Возраст" th:field="*{ageLimit}">
-                </label>
-
-                <br>
-                Объем страниц
-                <br>
-                <label>
-                    <input type="number" name="page_size" placeholder="Кол-во страниц" th:field="*{pageSize}">
-                </label>
-
-                <br>
-                Дата написания
-                <br>
-                <label>
-                    <input type="date" name="date_of_writing" placeholder="Дата" th:field="*{dateOfWriting}">
-                </label>
             </div>
-
-            <br>
-            <div class="line"></div>
-            <p>Добавить авторов</p>
-            <div class="line"></div>
-            <div th:each="author: ${authors}">
-                <label>
-                    <span th:text="${author.getName}"></span>
-                    <input type="checkbox" name="authorsId" th:value="${author.getId}">
-                </label>
-            </div>
-
-            <br>
-            <div class="line"></div>
-            <p>Добавить жанры</p>
-            <div class="line"></div>
-            <div th:each="genre: ${genres}">
-                <label>
-                    <span th:text="${genre.getName}"></span>
-                    <input type="checkbox" name="genresId" th:value="${genre.getId}">
-                </label>
-            </div>
-
             <button type="submit">Отправить</button>
         </form>
     </div>

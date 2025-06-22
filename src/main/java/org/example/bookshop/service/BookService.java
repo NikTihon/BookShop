@@ -2,9 +2,7 @@ package org.example.bookshop.service;
 
 
 import org.example.bookshop.entity.Book;
-import org.example.bookshop.entity.DescriptionBook;
 import org.example.bookshop.repository.AuthorRepository;
-import org.example.bookshop.repository.DescriptionBookRepository;
 import org.example.bookshop.repository.GenreRepository;
 import org.springframework.stereotype.Service;
 import org.example.bookshop.repository.BookRepository;
@@ -15,17 +13,14 @@ import java.util.List;
 
 @Service
 public class BookService {
-
-    private final DescriptionBookRepository descriptionBookRepository;
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final GenreRepository genreRepository;
 
-    public BookService(BookRepository bookRepository, AuthorRepository authorRepository, GenreRepository genreRepository, DescriptionBookRepository descriptionBookRepository) {
+    public BookService(BookRepository bookRepository, AuthorRepository authorRepository, GenreRepository genreRepository) {
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
         this.genreRepository = genreRepository;
-        this.descriptionBookRepository = descriptionBookRepository;
     }
 
     @Transactional
@@ -49,14 +44,14 @@ public class BookService {
     }
 
     @Transactional
-    public void AddNewBook(Book book,
-                           DescriptionBook descriptionBook,
-                           List<Integer> authors, List<Integer> genres) {
+    public int addNewBook(Book book, List<Integer> authors, List<Integer> genres) {
+
         authors.forEach(i -> book.getAuthors().add(authorRepository.findById(i)
                 .orElseThrow(() -> new RuntimeException("Author not found"))));
         genres.forEach(i -> book.getGenres().add(genreRepository.findById(i)
                 .orElseThrow(() -> new RuntimeException("Genre not found"))));
-        //descriptionBookRepository.save(descriptionBook);
-        bookRepository.save(new Book(book, descriptionBook));
+        return bookRepository.save(book).getId();
     }
+
+
 }
